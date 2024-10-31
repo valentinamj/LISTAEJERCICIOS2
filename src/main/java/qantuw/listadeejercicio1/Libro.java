@@ -3,19 +3,20 @@
 package qantuw.listadeejercicio1;
 
 public class Libro {
-   private final String titulo;
-    private final String autor;
-    private final int anioPublicacion;
-    private final String genero;
-    private final int numeroPaginas;
-    private final String estadoPrestamo;
-    private final int numeroCapitulos;
-    private final String fechaLiberacion;
+    private String titulo;
+    private String autor;
+    private int anoPublicacion;
+    private String genero;
+    private int numeroPaginas;
+    private EstadoPrestamo estadoPrestamo;
+    private int numeroCapitulos;
+    private String fechaLiberacion; // Para la fecha de liberación si el libro está ocupado.
 
-    private Libro(BuilderLibro builder) {
+    // Constructor privado para que solo el Builder pueda construir instancias de Libro.
+    private Libro(Builder builder) {
         this.titulo = builder.titulo;
         this.autor = builder.autor;
-        this.anioPublicacion = builder.anioPublicacion;
+        this.anoPublicacion = builder.anoPublicacion;
         this.genero = builder.genero;
         this.numeroPaginas = builder.numeroPaginas;
         this.estadoPrestamo = builder.estadoPrestamo;
@@ -23,54 +24,65 @@ public class Libro {
         this.fechaLiberacion = builder.fechaLiberacion;
     }
 
-    public static class BuilderLibro {
+    // Getters para los atributos
+    public String getTitulo() { return titulo; }
+    public String getAutor() { return autor; }
+    public int getAnoPublicacion() { return anoPublicacion; }
+    public String getGenero() { return genero; }
+    public int getNumeroPaginas() { return numeroPaginas; }
+    public EstadoPrestamo getEstadoPrestamo() { return estadoPrestamo; }
+    public int getNumeroCapitulos() { return numeroCapitulos; }
+    public String getFechaLiberacion() { return fechaLiberacion; }
+
+    // Clase Enum para definir los estados de préstamo del libro.
+    public enum EstadoPrestamo {
+        OCUPADO,
+        LIBRE,
+        NO_EXISTE
+    }
+
+    // Clase interna Builder para construir instancias de Libro
+    public static class Builder {
         private String titulo;
         private String autor;
-        private int anioPublicacion;
+        private int anoPublicacion;
         private String genero;
         private int numeroPaginas;
-        private String estadoPrestamo;
+        private EstadoPrestamo estadoPrestamo = EstadoPrestamo.LIBRE; // Libre por defecto
         private int numeroCapitulos;
         private String fechaLiberacion;
 
-        // Métodos de configuración para cada atributo
-
-        public BuilderLibro titulo(String titulo) {
+        public Builder(String titulo, String autor) {
             this.titulo = titulo;
-            return this;
-        }
-
-        public BuilderLibro autor(String autor) {
             this.autor = autor;
+        }
+
+        public Builder setAnoPublicacion(int anoPublicacion) {
+            this.anoPublicacion = anoPublicacion;
             return this;
         }
 
-        public BuilderLibro anioPublicacion(int anioPublicacion) {
-            this.anioPublicacion = anioPublicacion;
-            return this;
-        }
-
-        public BuilderLibro genero(String genero) {
+        public Builder setGenero(String genero) {
             this.genero = genero;
             return this;
         }
 
-        public BuilderLibro numeroPaginas(int numeroPaginas) {
+        public Builder setNumeroPaginas(int numeroPaginas) {
             this.numeroPaginas = numeroPaginas;
             return this;
         }
 
-        public BuilderLibro estadoPrestamo(String estadoPrestamo) {
+        public Builder setEstadoPrestamo(EstadoPrestamo estadoPrestamo) {
             this.estadoPrestamo = estadoPrestamo;
             return this;
         }
 
-        public BuilderLibro numeroCapitulos(int numeroCapitulos) {
+        public Builder setNumeroCapitulos(int numeroCapitulos) {
             this.numeroCapitulos = numeroCapitulos;
             return this;
         }
 
-        public BuilderLibro fechaLiberacion(String fechaLiberacion) {
+        public Builder setFechaLiberacion(String fechaLiberacion) {
             this.fechaLiberacion = fechaLiberacion;
             return this;
         }
@@ -79,54 +91,6 @@ public class Libro {
             return new Libro(this);
         }
     }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public String getAutor() {
-        return autor;
-    }
-
-    public int getAnioPublicacion() {
-        return anioPublicacion;
-    }
-
-    public String getGenero() {
-        return genero;
-    }
-
-    public int getNumeroPaginas() {
-        return numeroPaginas;
-    }
-
-    public String getEstadoPrestamo() {
-        return estadoPrestamo;
-    }
-
-    public int getNumeroCapitulos() {
-        return numeroCapitulos;
-    }
-
-    public String getFechaLiberacion() {
-        return fechaLiberacion;
-    }
-    
-    @Override
-    public String toString() {
-    return "Libro {" +
-           "Título='" + titulo + '\'' +
-           ", Autor='" + autor + '\'' +
-           ", Año de Publicación=" + anioPublicacion +
-           ", Género='" + genero + '\'' +
-           ", Número de Páginas=" + numeroPaginas +
-           ", Estado de Préstamo='" + estadoPrestamo + '\'' +
-           ", Número de Capítulos=" + numeroCapitulos +
-           ", Fecha de Liberación='" + fechaLiberacion + '\'' +
-           '}';
-}
-
- 
 }
 
  
