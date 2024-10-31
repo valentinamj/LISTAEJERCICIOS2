@@ -10,9 +10,9 @@ public class Libro {
     private int numeroPaginas;
     private EstadoPrestamo estadoPrestamo;
     private int numeroCapitulos;
-    private String fechaLiberacion; // Para la fecha de liberación si el libro está ocupado.
+    private String fechaLiberacion; 
 
-    // Constructor privado para que solo el Builder pueda construir instancias de Libro.
+    
     private Libro(Builder builder) {
         this.titulo = builder.titulo;
         this.autor = builder.autor;
@@ -24,7 +24,7 @@ public class Libro {
         this.fechaLiberacion = builder.fechaLiberacion;
     }
 
-    // Getters para los atributos
+   
     public String getTitulo() { return titulo; }
     public String getAutor() { return autor; }
     public int getAnoPublicacion() { return anoPublicacion; }
@@ -34,21 +34,21 @@ public class Libro {
     public int getNumeroCapitulos() { return numeroCapitulos; }
     public String getFechaLiberacion() { return fechaLiberacion; }
 
-    // Clase Enum para definir los estados de préstamo del libro.
+    
     public enum EstadoPrestamo {
         OCUPADO,
         LIBRE,
         NO_EXISTE
     }
 
-    // Clase interna Builder para construir instancias de Libro
+    
     public static class Builder {
         private String titulo;
         private String autor;
         private int anoPublicacion;
         private String genero;
         private int numeroPaginas;
-        private EstadoPrestamo estadoPrestamo = EstadoPrestamo.LIBRE; // Libre por defecto
+        private EstadoPrestamo estadoPrestamo = EstadoPrestamo.LIBRE; 
         private int numeroCapitulos;
         private String fechaLiberacion;
 
