@@ -42,13 +42,25 @@ public class RepositorioLibros {
     public void buscarLibroPorGenero(String generoIngresado) {
         libros.stream()
                 .filter(l -> l.getGenero().equalsIgnoreCase(generoIngresado))
-                .forEach(l -> System.out.println(l.getTitulo()));
+                .forEach(libro ->{
+                    if(libro.getEstadoPrestamo()==Libro.EstadoPrestamo.LIBRE)
+                        System.out.println("Título: "+libro.getTitulo()+" - Estado: "+libro.getEstadoPrestamo());
+                    else if(libro.getEstadoPrestamo()==Libro.EstadoPrestamo.OCUPADO)
+                        System.out.println("Título: "+libro.getTitulo()+" - Estado: "+libro.getEstadoPrestamo()+
+                        " - Fecha de liberación: "+libro.getFechaLiberacion());
+                });
     }
     
     public void buscarLibroPorAutor(String autorIngresado) {
         libros.stream()
                 .filter(l -> l.getAutor().equalsIgnoreCase(autorIngresado))
-                .forEach(l -> System.out.println(l.getTitulo()));
+                .forEach(libro ->{
+                    if(libro.getEstadoPrestamo()==Libro.EstadoPrestamo.LIBRE)
+                        System.out.println("Título: "+libro.getTitulo()+" - Estado: "+libro.getEstadoPrestamo());
+                    else if(libro.getEstadoPrestamo()==Libro.EstadoPrestamo.OCUPADO)
+                        System.out.println("Título: "+libro.getTitulo()+" - Estado: "+libro.getEstadoPrestamo()+
+                        " - Fecha de liberación: "+libro.getFechaLiberacion());
+                });
     }
 
     public void eliminarLibro(String titulo) {
